@@ -1,15 +1,24 @@
 package errorlib
 
-type InternalServerErr struct {
-	AppError
-}
+import (
+	"github.com/gin-gonic/gin"
+	restResponder "github.com/prakash-p-3121/rest-response-lib"
+)
 
-func (err *InternalServerErr) Error() string {
-	return err.errorDescription
+type InternalServerErrImpl struct {
+	AppErrorImpl
 }
 
 func NewInternalServerError(desc string) error {
-	return &InternalServerErr{AppError{
+	return &InternalServerErrImpl{AppErrorImpl{
 		errorDescription: desc,
 	}}
+}
+
+func (err *InternalServerErrImpl) Error() string {
+	return err.errorDescription
+}
+
+func (err *InternalServerErrImpl) SendRestResponse(ctx *gin.Context) {
+	restResponder.InternalServerErrorResponse(ctx, err.errorDescription)
 }

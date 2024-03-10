@@ -1,16 +1,25 @@
 package errorlib
 
-type NotFoundError struct {
-	AppError
+import (
+	"github.com/gin-gonic/gin"
+	restResponder "github.com/prakash-p-3121/rest-response-lib"
+)
+
+type NotFoundErrorImpl struct {
+	AppErrorImpl
 }
 
-func (err *NotFoundError) Error() string {
+func NewNotFoundError(desc string) error {
+	return &NotFoundErrorImpl{AppErrorImpl{
+		errorDescription: desc,
+	}}
+}
+
+func (err *NotFoundErrorImpl) Error() string {
 
 	return err.errorDescription
 }
 
-func NewNotFoundError(desc string) error {
-	return &NotFoundError{AppError{
-		errorDescription: desc,
-	}}
+func (err *NotFoundErrorImpl) SendRestResponse(ctx *gin.Context) {
+	restResponder.InternalServerErrorResponse(ctx, err.errorDescription)
 }

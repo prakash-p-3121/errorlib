@@ -1,15 +1,24 @@
 package errorlib
 
-type ConflictError struct {
-	AppError
-}
+import (
+	"github.com/gin-gonic/gin"
+	restResponder "github.com/prakash-p-3121/rest-response-lib"
+)
 
-func (err *ConflictError) Error() string {
-	return err.errorDescription
+type ConflictErrorImpl struct {
+	AppErrorImpl
 }
 
 func NewConflictError(desc string) error {
-	return &ConflictError{AppError{
+	return &ConflictErrorImpl{AppErrorImpl{
 		errorDescription: desc,
 	}}
+}
+
+func (err *ConflictErrorImpl) Error() string {
+	return err.errorDescription
+}
+
+func (err *ConflictErrorImpl) SendRestResponse(ctx *gin.Context) {
+	restResponder.ConlictResponse(ctx, err.errorDescription)
 }

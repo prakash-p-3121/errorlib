@@ -1,15 +1,24 @@
 package errorlib
 
-type BadReqError struct {
-	AppError
+import (
+	"github.com/gin-gonic/gin"
+	restResponder "github.com/prakash-p-3121/rest-response-lib"
+)
+
+type BadReqErrorImpl struct {
+	AppErrorImpl
 }
 
-func (err *BadReqError) Error() string {
+func NewBadReqError(desc string) AppError {
+	return &BadReqErrorImpl{AppErrorImpl{
+		errorDescription: desc,
+	}}
+}
+
+func (err *BadReqErrorImpl) Error() string {
 	return err.errorDescription
 }
 
-func NewBadReqError(desc string) error {
-	return &BadReqError{AppError{
-		errorDescription: desc,
-	}}
+func (err *BadReqErrorImpl) SendRestResponse(ctx *gin.Context) {
+	restResponder.BadReqResponse(ctx, err.errorDescription)
 }
