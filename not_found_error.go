@@ -9,7 +9,7 @@ type NotFoundErrorImpl struct {
 	AppErrorImpl
 }
 
-func NewNotFoundError(desc string) error {
+func NewNotFoundError(desc string) AppError {
 	return &NotFoundErrorImpl{AppErrorImpl{
 		errorDescription: desc,
 	}}

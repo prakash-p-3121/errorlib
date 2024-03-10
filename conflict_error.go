@@ -9,7 +9,7 @@ type ConflictErrorImpl struct {
 	AppErrorImpl
 }
 
-func NewConflictError(desc string) error {
+func NewConflictError(desc string) AppError {
 	return &ConflictErrorImpl{AppErrorImpl{
 		errorDescription: desc,
 	}}

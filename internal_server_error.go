@@ -9,7 +9,7 @@ type InternalServerErrImpl struct {
 	AppErrorImpl
 }
 
-func NewInternalServerError(desc string) error {
+func NewInternalServerError(desc string) AppError {
 	return &InternalServerErrImpl{AppErrorImpl{
 		errorDescription: desc,
 	}}
