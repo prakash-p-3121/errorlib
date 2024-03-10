@@ -2,7 +2,7 @@ package errorlib
 
 import (
 	"github.com/gin-gonic/gin"
-	restResponder "github.com/prakash-p-3121/rest-response-lib"
+	restlib "github.com/prakash-p-3121/restlib"
 )
 
 type BadReqErrorImpl struct {
@@ -20,5 +20,5 @@ func (err *BadReqErrorImpl) Error() string {
 }
 
 func (err *BadReqErrorImpl) SendRestResponse(ctx *gin.Context) {
-	restResponder.BadReqResponse(ctx, err.errorDescription)
+	restlib.BadReqResponse(ctx, err.errorDescription)
 }

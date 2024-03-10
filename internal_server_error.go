@@ -2,7 +2,7 @@ package errorlib
 
 import (
 	"github.com/gin-gonic/gin"
-	restResponder "github.com/prakash-p-3121/rest-response-lib"
+	restlib "github.com/prakash-p-3121/restlib"
 )
 
 type InternalServerErrImpl struct {
@@ -20,5 +20,5 @@ func (err *InternalServerErrImpl) Error() string {
 }
 
 func (err *InternalServerErrImpl) SendRestResponse(ctx *gin.Context) {
-	restResponder.InternalServerErrorResponse(ctx, err.errorDescription)
+	restlib.InternalServerErrorResponse(ctx, err.errorDescription)
 }

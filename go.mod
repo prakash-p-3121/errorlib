@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/gin-gonic/gin v1.9.1
-	github.com/prakash-p-3121/rest-response-lib v0.0.1
+	github.com/prakash-p-3121/restlib v0.0.3
 )
 
 require (

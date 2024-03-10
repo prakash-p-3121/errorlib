@@ -2,7 +2,7 @@ package errorlib
 
 import (
 	"github.com/gin-gonic/gin"
-	restResponder "github.com/prakash-p-3121/rest-response-lib"
+	restlib "github.com/prakash-p-3121/restlib"
 )
 
 type NotFoundErrorImpl struct {
@@ -21,5 +21,5 @@ func (err *NotFoundErrorImpl) Error() string {
 }
 
 func (err *NotFoundErrorImpl) SendRestResponse(ctx *gin.Context) {
-	restResponder.InternalServerErrorResponse(ctx, err.errorDescription)
+	restlib.InternalServerErrorResponse(ctx, err.errorDescription)
 }
