@@ -5,6 +5,7 @@ type NotFoundError struct {
 }
 
 func (err *NotFoundError) Error() string {
+
 	return err.errorDescription
 }
 
