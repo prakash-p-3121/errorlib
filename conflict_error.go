@@ -20,5 +20,5 @@ func (err *ConflictErrorImpl) Error() string {
 }
 
 func (err *ConflictErrorImpl) SendRestResponse(ctx *gin.Context) {
-	restlib.ConflictResponse(ctx, err.errorDescription)
+	restlib.ConflictResponse(ctx, RestError{Reason: err.errorDescription})
 }

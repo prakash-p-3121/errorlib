@@ -21,5 +21,5 @@ func (err *NotFoundErrorImpl) Error() string {
 }
 
 func (err *NotFoundErrorImpl) SendRestResponse(ctx *gin.Context) {
-	restlib.NotFoundResponse(ctx, err.errorDescription)
+	restlib.NotFoundResponse(ctx, RestError{Reason: err.errorDescription})
 }

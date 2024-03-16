@@ -20,5 +20,5 @@ func (err *BadReqErrorImpl) Error() string {
 }
 
 func (err *BadReqErrorImpl) SendRestResponse(ctx *gin.Context) {
-	restlib.BadReqResponse(ctx, err.errorDescription)
+	restlib.BadReqResponse(ctx, RestError{Reason: err.errorDescription})
 }

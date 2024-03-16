@@ -14,5 +14,5 @@ func (err *AppErrorImpl) Error() string {
 }
 
 func (err *AppErrorImpl) SendRestResponse(ctx *gin.Context) {
-	restlib.InternalServerErrorResponse(ctx, err.errorDescription)
+	restlib.InternalServerErrorResponse(ctx, RestError{Reason: err.errorDescription})
 }
